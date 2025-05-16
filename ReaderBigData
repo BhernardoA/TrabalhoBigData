@@ -1,0 +1,19 @@
+#Imports usados
+import pandas as pd
+
+# Configurar o pandas para mostrar todas as colunas
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+
+#Leitura do arquivo desejado
+df = pd.read_excel(r'C:\Users\Amd\Downloads\Planilha de Vendas Anuais 2024 Bhe.xlsx', engine='openpyxl')
+
+# Converta a coluna 'EMISSÃO' para datetime
+df['EMISSÃO'] = pd.to_datetime(df['EMISSÃO'], errors='coerce')
+
+# Formate para "DD/MM"
+df['EMISSÃO'] = df['EMISSÃO'].dt.strftime('%d/%m')
+
+# Exiba os dados para confirmar
+print(df.head())
+
